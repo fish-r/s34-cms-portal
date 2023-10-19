@@ -2,7 +2,8 @@
 This repository contains the source code for the Content Management System under Team S34's Capstone project
 
 ## Pre-Requisites
-- 
+- [Nodejs](https://nodejs.org/en)
+- [npm Runtime Environment](https://www.npmjs.com/)
 
 ## Project Structure
 The project structure is as shown below.
