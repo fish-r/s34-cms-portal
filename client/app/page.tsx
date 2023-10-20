@@ -1,10 +1,14 @@
 /* Components */
-import { Counter } from './components/Counter/Counter'
+import { Dashboard } from './components/Dashboard/Dashboard'
+import { Text } from '@mantine/core'
 
 export default function IndexPage() {
-  return <Counter />
+  return (<>
+    <Dashboard />
+  </>
+  )
 }
 
 export const metadata = {
-  title: 'Redux Toolkit',
+  title: 'Dashboard',
 }
