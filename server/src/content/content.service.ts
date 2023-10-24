@@ -10,12 +10,12 @@ export class ContentService {
     @InjectModel('Content') private readonly contentModel: Model<Content>,
   ) {}
 
-  getContentIndex(): string {
-    return 'Hello World!';
+  getContentIndex(): any {
+    return this.contentModel.find();
   }
 
-  getContentById(): string {
-    return 'get content by id';
+  getContentById(id: string): any {
+    return this.contentModel.findById(id);
   }
 
   /**
