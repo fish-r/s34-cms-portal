@@ -5,7 +5,7 @@ import { ContentService } from './content.service';
 import { AwsModule } from 'src/aws/aws.module';
 
 @Module({
-  imports: [AwsModule], // Include AwsModule in the imports array
+  imports: [AwsModule],
   controllers: [ContentController],
   providers: [ContentService],
 })
