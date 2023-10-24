@@ -14,6 +14,10 @@ export class ContentService {
     return this.contentModel.find();
   }
 
+  /**
+   * Retrieves a single Content resource
+   * @param id: String, MongoDB document id
+   */
   getContentById(id: string): any {
     return this.contentModel.findById(id);
   }
@@ -37,6 +41,15 @@ export class ContentService {
 
   /**
    * Updates the questions, such as deleting or creating new questions
+   * @param id: String, MongoDB document id
    */
-  updateQuestions() {}
+  updateContentMetadata(id: string, content: Content) {
+    return this.contentModel.findOneAndUpdate({ _id: id }, content, {
+      new: true,
+    });
+  }
+
+  delete(id: string) {
+    return this.contentModel.findOneAndDelete({ _id: id }, { new: true });
+  }
 }

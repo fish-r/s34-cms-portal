@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Patch, Post, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Res,
+} from '@nestjs/common';
 
 import { ContentService } from './content.service';
 import { Content } from './content.model';
@@ -22,11 +31,9 @@ export class ContentController {
 
   @Get('/:id')
   getContentById(@Param() param: { id: string }) {
-    console.log('id param', param.id);
     const contentObject = this.contentService
       .getContentById(param.id)
       .then((result) => {
-        console.log(result);
         return result;
       })
       .catch((err: MongooseError) => {
@@ -59,6 +66,31 @@ export class ContentController {
       });
   }
 
-  @Patch()
-  updateQuestions() {}
+  @Patch('/:id')
+  update(@Param() param: { id: string }, @Body() body: Content) {
+    const contentObject = this.contentService
+      .updateContentMetadata(param.id, body)
+      .then((result) => {
+        return result;
+      })
+      .catch((err: MongooseError) => {
+        console.log(err);
+      });
+
+    return contentObject;
+  }
+
+  @Delete('/:id')
+  delete(@Param() param: { id: string }) {
+    const contentObject = this.contentService
+      .delete(param.id)
+      .then((result) => {
+        return result;
+      })
+      .catch((err: MongooseError) => {
+        console.log(err);
+      });
+
+    return contentObject;
+  }
 }
