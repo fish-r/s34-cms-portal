@@ -26,6 +26,9 @@ export class TraineeService {
    * @param trainee Trainee to be inserted in to mongo
    */
   insertToMongo(trainee: Trainee) {
+    // Insert date created
+    trainee.createdAt = new Date();
+
     const result = this.traineeModel.create(trainee);
     return result;
   }

@@ -34,13 +34,6 @@ export class TraineeController {
     const trainee = this.traineeService
       .getTraineeById(param.id)
       .then((result: Trainee | null) => {
-        // if (!result) {
-        //   res.statusCode = 404;
-        //   res.json({
-        //     status: res.statusCode,
-        //     message: `Cannot find trainee with ID ${param.id}`,
-        //   });
-        // }
         return result;
       })
       .catch((err: MongooseError) => {
@@ -82,13 +75,11 @@ export class TraineeController {
     const trainee = this.traineeService
       .update(param.id, body)
       .then((result) => {
-        if (!result) {
-          res.statusCode = 404;
-          res.json({
-            status: res.statusCode,
-            message: `Cannot find trainee with ID ${param.id}`,
-          });
-        }
+        res.statusCode = 200;
+        res.json({
+          status: res.statusCode,
+          message: result,
+        });
       })
       .catch((err: MongooseError) => {
         console.log(err);
