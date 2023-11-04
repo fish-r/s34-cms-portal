@@ -45,6 +45,7 @@ export class ContentService {
    */
   updateContentMetadata(id: string, content: Content) {
     return this.contentModel.findOneAndUpdate({ _id: id }, content, {
+      upsert: false,
       new: true,
     });
   }

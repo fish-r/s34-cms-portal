@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ContentModule } from './content/content.module';
 import { AwsModule } from './aws/aws.module';
 import * as dotenv from 'dotenv';
+import { TraineeModule } from './trainee/trainee.module';
 dotenv.config();
 
 const environment = process.env.NODE_ENV || 'development';
@@ -16,7 +17,12 @@ const connectionString =
     : process.env.MONGO_CONNECTION_PROD;
 
 @Module({
-  imports: [MongooseModule.forRoot(connectionString), ContentModule, AwsModule],
+  imports: [
+    MongooseModule.forRoot(connectionString),
+    ContentModule,
+    AwsModule,
+    TraineeModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
