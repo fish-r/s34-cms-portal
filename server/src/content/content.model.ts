@@ -88,12 +88,11 @@ export const sampleContent: Content = {
 export const ContentSchema = new mongoose.Schema({
   ownerId: { type: String, required: true },
   filename: { type: String, required: true, unique: true },
-  createdAt: { type: Date, required: true },
-  lastUpdatedAt: { type: Date, required: true },
+  createdAt: { type: Date, required: false },
+  lastUpdatedAt: { type: Date, required: false },
   processingStartedAt: { type: Date, required: false },
   processingEndedAt: { type: Date, required: false },
   isProcessed: { type: Boolean, required: true },
   s3Key: { type: String, required: true, unique: true },
   questions: { type: Array<Question>, required: false },
-  classifiedRoles: { type: Array<string>, required: false },
 });
