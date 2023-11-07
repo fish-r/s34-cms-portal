@@ -10,5 +10,5 @@ export default function IndexPage() {
 }
 
 export const metadata = {
-  title: 'Storyline Editor',
+  title: 'Courses',
 }

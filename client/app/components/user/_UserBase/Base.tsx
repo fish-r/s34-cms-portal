@@ -4,6 +4,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { AppShell, Burger, Button, Group, NavLink, Title } from '@mantine/core';
 import { IconBinaryTree, IconClipboardList, IconDashboard } from '@tabler/icons-react';
 import Link from 'next/link';
+import { NAME } from '@/app/variables';
 
 export const UserBase = (props: React.PropsWithChildren) => {
   const [opened, { toggle }] = useDisclosure();
@@ -17,7 +18,7 @@ export const UserBase = (props: React.PropsWithChildren) => {
       <AppShell.Header>
         <Group h="100%" px="md">
             <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-            <Title>S34 CMS Trainee</Title>
+            <Title>{NAME} Trainee</Title>
         </Group>
       </AppShell.Header>
 

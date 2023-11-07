@@ -8,20 +8,8 @@ import '@mantine/core/styles.css';
 import { Button, ColorSchemeScript, MantineProvider, Text } from '@mantine/core'
 import { UserBase } from '../components/user/_UserBase/Base';
 
-export default function RootLayout(props: React.PropsWithChildren) {
+export default function UserLayout(props: React.PropsWithChildren) {
   return (
-    // For Redux
-    <Providers>
-      <html lang="en">
-        <head>
-          <ColorSchemeScript />
-        </head>
-        <body>
-          <MantineProvider defaultColorScheme='light'> {/* For Mantine UI library */}
-            <UserBase> {props.children} </UserBase>
-          </MantineProvider>
-        </body>
-      </html>
-    </Providers>
+    <UserBase> {props.children} </UserBase>
   )
 }

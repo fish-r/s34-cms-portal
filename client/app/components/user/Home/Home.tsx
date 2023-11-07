@@ -1,11 +1,11 @@
 'use client'
 
-import { useMantineTheme, Group, rem, Button, Text } from "@mantine/core";
+import { Group, Button, Text, Anchor, Checkbox, Container, Paper, PasswordInput, TextInput, Title } from "@mantine/core";
 
 export const Home = (props: React.PropsWithChildren) => {
     return (
-    <>
+      <>
         <Text>Home</Text>
-    </>
+      </>
   )
 }
