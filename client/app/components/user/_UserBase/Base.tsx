@@ -5,7 +5,7 @@ import { AppShell, Burger, Button, Group, NavLink, Title } from '@mantine/core';
 import { IconBinaryTree, IconClipboardList, IconDashboard } from '@tabler/icons-react';
 import Link from 'next/link';
 
-export const Base = (props: React.PropsWithChildren) => {
+export const UserBase = (props: React.PropsWithChildren) => {
   const [opened, { toggle }] = useDisclosure();
 
   return (
@@ -17,14 +17,14 @@ export const Base = (props: React.PropsWithChildren) => {
       <AppShell.Header>
         <Group h="100%" px="md">
             <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-            <Title>S34 CMS</Title>
+            <Title>S34 CMS Trainee</Title>
         </Group>
       </AppShell.Header>
 
       <AppShell.Navbar p="md">
-        <NavLink label="Dashboard" component={Link} href={'/'} leftSection={<IconDashboard size="1rem" stroke={1.5} />} />
-        <NavLink label="Generate Questions" component={Link} href={'/generateqns'} leftSection={<IconClipboardList size="1rem" stroke={1.5} />} />
-        <NavLink label="Storyline Editor" component={Link} href={'/storylineeditor'} leftSection={<IconBinaryTree size="1rem" stroke={1.5} />} />
+        <NavLink label="Home" component={Link} href={'/user/'} leftSection={<IconDashboard size="1rem" stroke={1.5} />} />
+        <NavLink label="Courses" component={Link} href={'/user/courses'} leftSection={<IconClipboardList size="1rem" stroke={1.5} />} />
+        <NavLink label="Profile" component={Link} href={'/user/profile'} leftSection={<IconBinaryTree size="1rem" stroke={1.5} />} />
       </AppShell.Navbar>
 
       <AppShell.Main>{props.children}</AppShell.Main>

@@ -2,13 +2,11 @@
 import { Providers } from '@/lib/providers'
 import Link from 'next/link'
 import '@mantine/core/styles.css';
-import { Nav } from './components/template/Nav'
 
 /* Instruments */
-import styles from './styles/layout.module.css'
 // import './styles/globals.css'
 import { Button, ColorSchemeScript, MantineProvider, Text } from '@mantine/core'
-import { Base } from './components/_Base/Base';
+import { UserBase } from '../components/user/_UserBase/Base';
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
@@ -20,7 +18,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
         </head>
         <body>
           <MantineProvider defaultColorScheme='light'> {/* For Mantine UI library */}
-            <Base> {props.children} </Base>
+            <UserBase> {props.children} </UserBase>
           </MantineProvider>
         </body>
       </html>

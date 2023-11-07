@@ -1,10 +1,10 @@
 /* Components */
-import { Dashboard } from './components/Dashboard/Dashboard'
 import { Text } from '@mantine/core'
+import { Home } from '../components/user/Home/Home'
 
 export default function IndexPage() {
   return (<>
-    <Dashboard />
+    <Home />
   </>
   )
 }

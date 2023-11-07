@@ -1,11 +1,11 @@
 /* Components */
 
-import { StorylineEditor } from "../components/StorylineEditor/StorylineEditor"
+import { Profile } from "@/app/components/user/Profile/Profile"
 
 
 export default function IndexPage() {
     return (
-        <StorylineEditor />
+        <Profile />
     )
 }
 
