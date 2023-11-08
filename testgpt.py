@@ -7,7 +7,7 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from llama_index import Document, VectorStoreIndex, SimpleDirectoryReader
 import openai
 
-os.environ['OPENAI_API_KEY'] = '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'
+os.environ['OPENAI_API_KEY'] = 'sk-...'
 
 # Load the hugging face model
 openai.api_key = os.environ["OPENAI_API_KEY"]
