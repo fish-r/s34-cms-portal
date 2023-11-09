@@ -1,8 +1,9 @@
 'use client'
 
-import { useMantineTheme, Group, rem, Button, Text, Card, Radio, Progress } from "@mantine/core";
+import { useMantineTheme, Group, rem, Button, Text, Card, Radio, Progress, SimpleGrid, Grid, Container, Center, Stack } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useCounter, useListState } from "@mantine/hooks";
+import { useState } from "react";
 
 const qns = [
   {
@@ -56,13 +57,19 @@ export const Profile = (props: React.PropsWithChildren) => {
   
   const form = useForm({
     initialValues:{
-      1: '', 2: '', 3: '', 4: '', 5: '',
+      0: '', 1: '', 2: '', 3: '', 4: '',
     }
   })
   const [qnIndex, handlers] = useCounter(0, { min: 0, max: qns.length-1 });
+  const [submitted, setSubmitted] = useState(false);
+
+  const redoQuiz = () => {
+    form.reset(); setSubmitted(false); handlers.set(0);
+  }
 
   return (
-    <>
+    <Container size='sm'>
+      {!submitted ? <form onSubmit={form.onSubmit((values) => setSubmitted(true))}>
         <Progress value={qnIndex/(qns.length-1)*100} mb='md' />
         <Card shadow="sm" padding="lg" radius="md" withBorder>
           <Card.Section withBorder>
@@ -70,22 +77,45 @@ export const Profile = (props: React.PropsWithChildren) => {
               <Text fw={500}>{qns[qnIndex].question}</Text>
             </Group>
           </Card.Section>
-          <Radio.Group py='sm' >
-          {
-            qns[qnIndex].options.map((item, index) => {
-              return (
-                <Radio p='sm' value={item.element} key={index} label={item.option} />
-              )
-            })
-          }
-          </Radio.Group>
+          
+            <Radio.Group py='sm' {...form.getInputProps(qnIndex.toString())} >
+            {
+              qns[qnIndex].options.map((item, index) => {
+                return (
+                  <Radio p='sm' value={item.element} 
+                  key={index} label={item.option}
+                  />
+                )
+              })
+            }
+            </Radio.Group>
+          
           <Card.Section withBorder>
-            <Group p='md'>
-              <Button onClick={handlers.decrement}>Previous</Button>
-              <Button onClick={handlers.increment}>Next</Button>
-            </Group>
+            <Grid p='md'>
+              <Grid.Col span={3}>
+                <Button fullWidth variant="light" disabled={qnIndex==0} onClick={handlers.decrement}>Previous</Button>
+              </Grid.Col>
+              <Grid.Col span={6}>
+                
+              </Grid.Col>
+              <Grid.Col span={3}>
+                {
+                  qnIndex < qns.length-1 ? 
+                  <Button fullWidth variant="light" onClick={handlers.increment}>Next</Button> :
+                  <Button fullWidth disabled={form.values["4"] === ""} color="green" type="submit">Submit</Button>
+                }
+              </Grid.Col>
+            </Grid>
           </Card.Section>
         </Card>
-    </>
+      </form> : 
+      <Card shadow="sm" padding="lg" radius="md" withBorder>
+        <Stack align="center" p='lg'>
+          <Text fw='bold' size="xl">Thank you for completing the questionnaire!</Text>
+          <Button onClick={redoQuiz}>Redo</Button>
+        </Stack>
+      </Card>
+      }
+    </Container>
   )
 }
