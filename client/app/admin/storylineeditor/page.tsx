@@ -1,11 +1,11 @@
 /* Components */
 
-import { Courses } from "@/app/components/user/Courses/Courses"
+import { StorylineEditor } from "@/app/components/admin/StorylineEditor/StorylineEditor"
 
 
 export default function IndexPage() {
     return (
-        <Courses />
+        <StorylineEditor />
     )
 }
 
