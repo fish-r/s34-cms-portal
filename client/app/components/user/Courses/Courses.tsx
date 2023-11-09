@@ -4,9 +4,9 @@ import { useMantineTheme, Group, rem, Button, Text, Checkbox, Table } from "@man
 import { useState } from "react";
 
 const data = [
-  { id:'1', name: "Course 1", instructor: "A", start: "1/1/2023", end: "1/1/2024" },
-  { id:'2', name: "Course 2", instructor: "B", start: "1/1/2023", end: "1/1/2024" },
-  { id:'3', name: "Course 3", instructor: "C", start: "1/1/2023", end: "1/1/2024" },
+  { id:'1', name: "Course 1", instructor: "A", start: "1/1/2023", end: "1/1/2024", state:"start" },
+  { id:'2', name: "Course 2", instructor: "B", start: "1/1/2023", end: "1/1/2024", state:"continue" },
+  { id:'3', name: "Course 3", instructor: "C", start: "1/1/2023", end: "1/1/2024", state:"start" },
 ]
 
 export const Courses = (props: React.PropsWithChildren) => {
@@ -29,6 +29,7 @@ export const Courses = (props: React.PropsWithChildren) => {
         <Table.Td>{item.instructor}</Table.Td>
         <Table.Td>{item.start}</Table.Td>
         <Table.Td>{item.end}</Table.Td>
+        <Table.Td>{ item.state == "start" ? <Button fullWidth color="green">Start</Button> : item.state == "continue" ? <Button fullWidth>Continue</Button> : ''}</Table.Td>
       </Table.Tr>
     );
   });
@@ -48,6 +49,7 @@ export const Courses = (props: React.PropsWithChildren) => {
             <Table.Th>Instructor</Table.Th>
             <Table.Th>Start</Table.Th>
             <Table.Th>End</Table.Th>
+            <Table.Th></Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>{rows}</Table.Tbody>
