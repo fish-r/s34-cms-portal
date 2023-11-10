@@ -4,118 +4,57 @@ import { useMantineTheme, Group, rem, Button, Text, Card, Radio, Progress, Simpl
 import { useForm } from "@mantine/form";
 import { useCounter, useListState } from "@mantine/hooks";
 import { useState } from "react";
+import { MCQ } from "../../common/MCQ/MCQ";
 
 const qns = [
   {
     question: "When I need to learn...",
     options: [
-      { option: "I like to see how I feel about it first", element: 'CE' },
-      { option: "I like to just start, do it", element: 'AE' },
-      { option: "I like to think about why", element: 'AC' },
-      { option: "I like to watch and listen before I do it", element: 'RO' },
+      { option: "I like to see how I feel about it first", value: 'CE' },
+      { option: "I like to just start, do it", value: 'AE' },
+      { option: "I like to think about why", value: 'AC' },
+      { option: "I like to watch and listen before I do it", value: 'RO' },
     ]
   },
   {
     question: "I learn best when...",
     options: [
-      { option: "I just trust my hunches and feelings", element: 'CE' },
-      { option: "I work hard to get things done", element: 'AE' },
-      { option: "I rely on logical thinking", element: 'AC' },
-      { option: "I listen and watch carefully", element: 'RO' },
+      { option: "I just trust my hunches and feelings", value: 'CE' },
+      { option: "I work hard to get things done", value: 'AE' },
+      { option: "I rely on logical thinking", value: 'AC' },
+      { option: "I listen and watch carefully", value: 'RO' },
     ]
   },
   {
     question: "When I am learning...",
     options: [
-      { option: "I have feelings and reactions", element: 'CE' },
-      { option: "I am usually the one responsible", element: 'AE' },
-      { option: "I tend to reason things out first", element: 'AC' },
-      { option: "I am quiet and reserved until comfortable", element: 'RO' },
+      { option: "I have feelings and reactions", value: 'CE' },
+      { option: "I am usually the one responsible", value: 'AE' },
+      { option: "I tend to reason things out first", value: 'AC' },
+      { option: "I am quiet and reserved until comfortable", value: 'RO' },
     ]
   },
   {
     question: "I learn by...",
     options: [
-      { option: "Feeling", element: 'CE' },
-      { option: "Doing", element: 'AE' },
-      { option: "Thinking", element: 'AC' },
-      { option: "Watching", element: 'RO' },
+      { option: "Feeling", value: 'CE' },
+      { option: "Doing", value: 'AE' },
+      { option: "Thinking", value: 'AC' },
+      { option: "Watching", value: 'RO' },
     ]
   },
   {
     question: "When I learn...",
     options: [
-      { option: "I get involved", element: 'CE' },
-      { option: "I am active", element: 'AE' },
-      { option: "I evaluate things", element: 'AC' },
-      { option: "I observe", element: 'RO' },
+      { option: "I get involved", value: 'CE' },
+      { option: "I am active", value: 'AE' },
+      { option: "I evaluate things", value: 'AC' },
+      { option: "I observe", value: 'RO' },
     ]
   },
 ]
 
 export const Profile = (props: React.PropsWithChildren) => {
   
-  const form = useForm({
-    initialValues:{
-      0: '', 1: '', 2: '', 3: '', 4: '',
-    }
-  })
-  const [qnIndex, handlers] = useCounter(0, { min: 0, max: qns.length-1 });
-  const [submitted, setSubmitted] = useState(false);
-
-  const redoQuiz = () => {
-    form.reset(); setSubmitted(false); handlers.set(0);
-  }
-
-  return (
-    <Container size='sm'>
-      {!submitted ? <form onSubmit={form.onSubmit((values) => setSubmitted(true))}>
-        <Progress value={qnIndex/(qns.length-1)*100} mb='md' />
-        <Card shadow="sm" padding="lg" radius="md" withBorder>
-          <Card.Section withBorder>
-            <Group p='md'>
-              <Text fw={500}>{qns[qnIndex].question}</Text>
-            </Group>
-          </Card.Section>
-          
-            <Radio.Group py='sm' {...form.getInputProps(qnIndex.toString())} >
-            {
-              qns[qnIndex].options.map((item, index) => {
-                return (
-                  <Radio p='sm' value={item.element} 
-                  key={index} label={item.option}
-                  />
-                )
-              })
-            }
-            </Radio.Group>
-          
-          <Card.Section withBorder>
-            <Grid p='md'>
-              <Grid.Col span={3}>
-                <Button fullWidth variant="light" disabled={qnIndex==0} onClick={handlers.decrement}>Previous</Button>
-              </Grid.Col>
-              <Grid.Col span={6}>
-                
-              </Grid.Col>
-              <Grid.Col span={3}>
-                {
-                  qnIndex < qns.length-1 ? 
-                  <Button fullWidth variant="light" onClick={handlers.increment}>Next</Button> :
-                  <Button fullWidth disabled={form.values["4"] === ""} color="green" type="submit">Submit</Button>
-                }
-              </Grid.Col>
-            </Grid>
-          </Card.Section>
-        </Card>
-      </form> : 
-      <Card shadow="sm" padding="lg" radius="md" withBorder>
-        <Stack align="center" p='lg'>
-          <Text fw='bold' size="xl">Thank you for completing the questionnaire!</Text>
-          <Button onClick={redoQuiz}>Redo</Button>
-        </Stack>
-      </Card>
-      }
-    </Container>
-  )
+  return <MCQ qns={qns} />
 }
