@@ -1,6 +1,6 @@
 /* Components */
 
-import { Profile } from "@/app/components/user/Profile/Profile"
+import { Profile } from "@/app/components/user/Profile"
 
 
 export default function IndexPage() {

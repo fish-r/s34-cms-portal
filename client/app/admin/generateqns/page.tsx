@@ -1,5 +1,5 @@
 /* Components */
-import { UploadPdf } from '../../components/admin/UploadPdf/UploadPdf';
+import { UploadPdf } from '../../components/admin/UploadPdf';
 
 export default function IndexPage() {
     return (

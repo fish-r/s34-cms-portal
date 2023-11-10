@@ -4,7 +4,7 @@ import { useMantineTheme, Group, rem, Button, Text, Card, Radio, Progress, Simpl
 import { useForm } from "@mantine/form";
 import { useCounter, useListState } from "@mantine/hooks";
 import { useState } from "react";
-import { MCQ } from "../../common/MCQ/MCQ";
+import { MCQ } from "../common/MCQ";
 
 const qns = [
   {

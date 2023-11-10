@@ -23,6 +23,8 @@ import { useState } from "react";
 export const MCQ = (props: any) => {
 
     const qns:MultipleChoice[] = props.qns;
+
+    // console.log(qns);
   
   // Create initialValues dynamically from the number of questions
   const init: { [key: string]: string } = Array.from({ length: qns.length }, (_, index) => ({ [index]: '' }))

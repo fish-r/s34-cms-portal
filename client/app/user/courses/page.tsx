@@ -1,6 +1,6 @@
 /* Components */
 
-import { Courses } from "@/app/components/user/Courses/Courses"
+import { Courses } from "@/app/components/user/Courses"
 
 
 export default function IndexPage() {

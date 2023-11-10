@@ -1,6 +1,7 @@
 'use client'
 
 import { useMantineTheme, Group, rem, Button, Text, Checkbox, Table } from "@mantine/core";
+import Link from "next/link";
 import { useState } from "react";
 
 const data = [
@@ -29,7 +30,7 @@ export const Courses = (props: React.PropsWithChildren) => {
         <Table.Td>{item.instructor}</Table.Td>
         <Table.Td>{item.start}</Table.Td>
         <Table.Td>{item.end}</Table.Td>
-        <Table.Td>{ item.state == "start" ? <Button fullWidth color="green">Start</Button> : item.state == "continue" ? <Button fullWidth>Continue</Button> : ''}</Table.Td>
+        <Table.Td>{ item.state == "start" ? <Button component={Link} fullWidth color="green" href={"/user/courses/"+item.id}>Start</Button> : item.state == "continue" ? <Button fullWidth component={Link} href={"/user/courses/"+item.id}>Continue</Button> : ''}</Table.Td>
       </Table.Tr>
     );
   });

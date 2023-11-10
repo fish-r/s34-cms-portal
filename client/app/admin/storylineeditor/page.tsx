@@ -1,6 +1,6 @@
 /* Components */
 
-import { StorylineEditor } from "@/app/components/admin/StorylineEditor/StorylineEditor"
+import { StorylineEditor } from "@/app/components/admin/StorylineEditor"
 
 
 export default function IndexPage() {

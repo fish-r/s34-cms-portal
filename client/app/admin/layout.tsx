@@ -7,7 +7,7 @@ import '@mantine/core/styles.css';
 import styles from './styles/layout.module.css'
 // import './styles/globals.css'
 import { Button, ColorSchemeScript, MantineProvider, Text } from '@mantine/core'
-import { Base } from '../components/admin/_Base/Base';
+import { Base } from '../components/admin/_Base';
 
 export default function AdminLayout(props: React.PropsWithChildren) {
   return (
