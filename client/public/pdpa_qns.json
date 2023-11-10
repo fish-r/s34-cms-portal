@@ -1,0 +1,102 @@
+[
+    {
+      "question": "What does PDPA stand for?",
+      "options": ["Personal Data Protection Act", "Private Data Protection Agency", "Personal Data Provision Act", "Public Data Privacy Act"],
+      "answer": 0
+    },
+    {
+      "question": "Which of the following is considered personal data under the PDPA?",
+      "options": ["Business registration number", "An individual's full name", "Publicly available information", "An organization's email address"],
+      "answer": 1
+    },
+    {
+      "question": "When can personal data be collected without consent under the PDPA?",
+      "options": ["For any marketing purposes", "When it is necessary for any legal investigation", "When it is for research purposes", "When the individual is famous"],
+      "answer": 1
+    },
+    {
+      "question": "What does the DNC Registry protect individuals from?",
+      "options": ["All phone calls", "Telemarketing calls and messages", "Personal calls", "Emergency alerts"],
+      "answer": 1
+    },
+    {
+      "question": "Who is responsible for PDPA compliance in an organization?",
+      "options": ["CEO", "Data Protection Officer (DPO)", "All employees", "Customers"],
+      "answer": 1
+    },
+    {
+      "question": "How should personal data be disposed of according to the PDPA?",
+      "options": ["By deleting it from the system", "By anonymizing the data", "By throwing it in the bin", "By shredding physical records and securely deleting electronic records"],
+      "answer": 3
+    },
+    {
+      "question": "Which of the following is NOT a legitimate purpose for the collection of personal data?",
+      "options": ["To complete a transaction requested by the individual", "For the organization’s operational purposes", "To sell to a third party without consent", "To comply with legal obligations"],
+      "answer": 2
+    },
+    {
+      "question": "What must organizations do before collecting personal data?",
+      "options": ["Inform the individual of the purpose", "Get a signature from the individual", "Pay the individual", "Post a public notice"],
+      "answer": 0
+    },
+    {
+      "question": "What should an organization do if they no longer need personal data for business purposes?",
+      "options": ["Keep it for future use", "Sell it to another company", "Destroy it securely", "Archive it indefinitely"],
+      "answer": 2
+    },
+    {
+      "question": "An organization can transfer personal data out of Singapore if it ensures that the recipient country has:",
+      "options": ["Lower data protection standards", "Similar data protection standards to Singapore", "No data protection laws", "A data sharing agreement regardless of standards"],
+      "answer": 1
+    },
+    {
+      "question": "Under the PDPA, individuals have the right to:",
+      "options": ["Demand unlimited data access", "Request for information on how their data is used", "Sell their own data", "Opt out of data protection"],
+      "answer": 1
+    },
+    {
+      "question": "Which type of personal data is exempt from the PDPA?",
+      "options": ["Email addresses", "Business contact information", "NRIC numbers", "Medical records"],
+      "answer": 1
+    },
+    {
+      "question": "Consent for personal data collection must be:",
+      "options": ["Assumed", "Verbal", "In writing", "Voluntary and informed"],
+      "answer": 3
+    },
+    {
+      "question": "If an individual withdraws consent for data use, the organization must:",
+      "options": ["Continue using the data for a grace period", "Stop using the data immediately", "Securely delete the data within a reasonable time", "Get consent from another family member"],
+      "answer": 2
+    },
+    {
+      "question": "An organization must notify the authorities of a data breach when:",
+      "options": ["It is a minor breach", "It affects more than 500 individuals", "It poses any risk of impact to the individuals affected", "It is requested by an individual"],
+      "answer": 2
+    },
+    {
+      "question": "What must a DPO do as part of their duties?",
+      "options": ["Attend all board meetings", "Ensure PDPA compliance", "Handle all IT matters", "Manage customer service inquiries"],
+      "answer": 1
+    },
+    {
+      "question": "Under PDPA, individuals have the right to:",
+      "options": ["Correct errors in their personal data", "Receive financial compensation for data collection", "Have all their data made public", "Prevent data collection entirely"],
+      "answer": 0
+    },
+    {
+      "question": "What is the maximum financial penalty for PDPA non-compliance?",
+      "options": ["$1,000", "$10,000", "10% of the organization's annual turnover in Singapore", "There is no financial penalty"],
+      "answer": 2
+    },
+    {
+      "question": "The PDPA applies to:",
+      "options": ["Only electronic data", "Only organizations in the finance sector", "Personal data in both electronic and non-electronic formats", "Only Singaporean citizens' data"],
+      "answer": 2
+    },
+    {
+      "question": "For how long can an organization retain personal data?",
+      "options": ["Indefinitely, as long as the organization exists", "For 7 years after the last transaction", "As long as it is necessary for the fulfillment of the purpose", "Only for 1 year after collection"],
+      "answer": 2
+    }
+]  
