@@ -56,5 +56,11 @@ const qns = [
 
 export const Profile = (props: React.PropsWithChildren) => {
   
-  return <MCQ qns={qns} />
+  return <MCQ qns={qns}>
+    <Stack align="center" p='lg'>
+      <Text fw='bold' ta='center' size="xl">Thank you for completing the questionnaire!</Text>
+      <Text size="lg" ta='center' c="dark">We will be using this information to tailor an engaging learning experience for you.</Text>
+      <Button>Redo</Button>
+    </Stack>
+  </MCQ>
 }

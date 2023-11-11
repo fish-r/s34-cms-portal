@@ -84,10 +84,7 @@ export const MCQ = (props: any) => {
         </Card>
       </form> : 
       <Card shadow="sm" padding="lg" radius="md" withBorder>
-        <Stack align="center" p='lg'>
-          <Text fw='bold' size="xl">Thank you for completing the questionnaire!</Text>
-          <Button onClick={redoQuiz}>Redo</Button>
-        </Stack>
+        {props.children}
       </Card>
       }
     </Container>
