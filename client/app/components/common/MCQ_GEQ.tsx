@@ -1,9 +1,10 @@
 'use client'
 
 import { MultipleChoice } from "@/app/variables";
-import { useMantineTheme, Group, rem, Button, Text, Card, Radio, Progress, SimpleGrid, Grid, Container, Center, Stack } from "@mantine/core";
+import { useMantineTheme, Group, rem, Button, Text, Card, Radio, Progress, SimpleGrid, Grid, Container, Center, Stack, Flex } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useCounter, useListState } from "@mantine/hooks";
+import { IconCircleCheck, IconCircleDot, IconCircleX } from "@tabler/icons-react";
 import { useState } from "react";
 
 // QUESTIONS ARRAY FORMAT:
@@ -20,7 +21,8 @@ import { useState } from "react";
 //   ...
 // ]
 
-export const MCQ = (props: any) => {
+// Grade Every Question
+export const MCQ_GEQ = (props: any) => {
 
     const qns:MultipleChoice[] = props.qns;
 
@@ -35,15 +37,30 @@ export const MCQ = (props: any) => {
   });
 
   const [qnIndex, handlers] = useCounter(0, { min: 0, max: qns.length-1 });
+  const [completed, setCompleted] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const redoQuiz = () => {
-    form.reset(); setSubmitted(false); handlers.set(0);
+    form.reset(); setCompleted(false); handlers.set(0);
+  }
+
+  const nextQn = () => {
+    setSubmitted(false);
+    if (qnIndex >= qns.length-1) {
+      setCompleted(true);
+    } else {
+      handlers.increment();
+    }
+  }
+
+  const submitQn = () => {
+    console.log(qns[qnIndex].answer?.toString() + "; " + form.values[qnIndex]);
+    setSubmitted(true);
   }
 
   return (
     <Container size='sm'>
-      {!submitted ? <form onSubmit={form.onSubmit((values) => setSubmitted(true))}>
+      {!completed ? <form onSubmit={form.onSubmit((values) => setCompleted(true))}>
         <Progress value={qnIndex/(qns.length-1)*100} mb='md' />
         <Card shadow="sm" padding="lg" radius="md" withBorder>
           <Card.Section withBorder>
@@ -56,9 +73,20 @@ export const MCQ = (props: any) => {
             {
               qns[qnIndex].options.map((item, index) => {
                 return (
+                  !submitted ? 
                   <Radio p='sm' value={item.value} 
                   key={index} label={item.option}
-                  />
+                  /> :
+                  <Flex  key={index} align="center">
+                    {
+                      (qns[qnIndex].answer?.toString() === index.toString()) ?
+                      <IconCircleCheck color="green" /> :
+                      (qns[qnIndex].answer?.toString() !== form.values[qnIndex]) && (form.values[qnIndex] === index.toString()) ?
+                      <IconCircleX color="red" /> :
+                      <IconCircleDot color="lightgray" />
+                    }
+                    <Text p='sm' size="sm">{item.option}</Text>
+                  </Flex>
                 )
               })
             }
@@ -66,17 +94,14 @@ export const MCQ = (props: any) => {
           
           <Card.Section withBorder>
             <Grid p='md'>
-              <Grid.Col span={3}>
-                <Button fullWidth variant="light" disabled={qnIndex==0} onClick={handlers.decrement}>Previous</Button>
-              </Grid.Col>
-              <Grid.Col span={6}>
+              <Grid.Col span={9}>
                 
               </Grid.Col>
               <Grid.Col span={3}>
                 {
-                  qnIndex < qns.length-1 ? 
-                  <Button fullWidth disabled={form.values[qnIndex.toString()] === ""} onClick={handlers.increment}>Next</Button> :
-                  <Button fullWidth disabled={form.values[(qns.length-1).toString()] === ""} color="green" type="submit">Submit</Button>
+                  submitted ? 
+                  <Button fullWidth onClick={nextQn}>Next</Button> :
+                  <Button fullWidth disabled={form.values[qnIndex.toString()] === ""} onClick={submitQn} color="green">Submit</Button>
                 }
               </Grid.Col>
             </Grid>
@@ -84,10 +109,7 @@ export const MCQ = (props: any) => {
         </Card>
       </form> : 
       <Card shadow="sm" padding="lg" radius="md" withBorder>
-        <Stack align="center" p='lg'>
-          <Text fw='bold' size="xl">Thank you for completing the questionnaire!</Text>
-          <Button onClick={redoQuiz}>Redo</Button>
-        </Stack>
+        {props.children}
       </Card>
       }
     </Container>

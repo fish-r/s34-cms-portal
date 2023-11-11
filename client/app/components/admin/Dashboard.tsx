@@ -1,51 +1,56 @@
 'use client'
 
 import { Group, Paper, SimpleGrid, Text } from '@mantine/core';
-import { IconArrowDownRight, IconArrowUpRight, IconCoin, IconDashboard, IconDiscount2, IconReceipt2, IconUserPlus } from '@tabler/icons-react';
-
-const icons = {
-  user: IconUserPlus,
-  discount: IconDiscount2,
-  receipt: IconReceipt2,
-  coin: IconCoin,
-};
-
-const data = [
-  { title: 'Revenue', icon: 'receipt', value: '13,456', diff: 34 },
-  { title: 'Profit', icon: 'coin', value: '4,145', diff: -13 },
-  { title: 'Coupons usage', icon: 'discount', value: '745', diff: 18 },
-  { title: 'New customers', icon: 'user', value: '188', diff: -30 },
-] as const;
+import { IconArrowDownRight, IconArrowUpRight, IconCoin, IconDashboard, IconDiscount2, IconMoodHappy, IconReceipt2, IconStar, IconUserCheck, IconUserPlus, IconUsers } from '@tabler/icons-react';
 
 export const Dashboard = (props: React.PropsWithChildren) => {
-  const stats = data.map((stat) => {
-    const Icon = icons[stat.icon];
-    const DiffIcon = stat.diff > 0 ? IconArrowUpRight : IconArrowDownRight;
-
-    return (
-      <Paper withBorder p="md" radius="md" key={stat.title}>
-        <Group justify="space-between">
-          <Text size="xs" c="dimmed">
-            {stat.title}
-          </Text>
-          <Icon size="1.4rem" stroke={1.5} />
-        </Group>
-
-        <Group align="flex-end" gap="xs" mt={25}>
-          <Text>{stat.value}</Text>
-          <Text c={stat.diff > 0 ? 'teal' : 'red'} fz="sm" fw={500}>
-            <span>{stat.diff}%</span>
-            <DiffIcon size="1rem" stroke={1.5} />
-          </Text>
-        </Group>
-
-        <Text fz="xs" c="dimmed" mt={7}>
-          Compared to previous month
-        </Text>
-      </Paper>
-    );
-  });
   return (
-    <SimpleGrid cols={{ base: 1, xs: 2, md: 4 }}>{stats}</SimpleGrid>
+    <SimpleGrid cols={{ base: 1, xs: 2, md: 4 }}>
+      <Paper withBorder p="md" radius="md">
+        <Group justify="space-between">
+          <Text size="sm" c="dimmed">
+            Enrolled
+          </Text>
+          <IconUsers size="1.4rem" stroke={1.5} />
+        </Group>
+        <Group align="flex-end">
+          <Text size='2em' fw={600}>141</Text>
+        </Group>
+      </Paper>
+      <Paper withBorder p="md" radius="md">
+        <Group justify="space-between">
+          <Text size="sm" c="dimmed">
+            Completed
+          </Text>
+          <IconUserCheck size="1.4rem" stroke={1.5} />
+        </Group>
+        <Group align="flex-end">
+          <Text size='2em' fw={600}>86</Text>
+        </Group>
+      </Paper>
+      <Paper withBorder p="md" radius="md">
+        <Group justify="space-between">
+          <Text size="sm" c="dimmed">
+            Avg. Performance
+          </Text>
+          <IconStar size="1.4rem" stroke={1.5} />
+        </Group>
+        <Group align="flex-end">
+          <Text size='2em' fw={600}>78%</Text>
+        </Group>
+      </Paper>
+      <Paper withBorder p="md" radius="md">
+        <Group justify="space-between">
+          <Text size="sm" c="dimmed">
+            Satisfaction
+          </Text>
+          <IconMoodHappy size="1.4rem" stroke={1.5} />
+        </Group>
+        <Group align="flex-end">
+          <Text size='2em' fw={600}>84%</Text>
+        </Group>
+      </Paper>
+
+    </SimpleGrid>
   );
 }
