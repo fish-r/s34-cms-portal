@@ -5,6 +5,7 @@ import { useForm } from "@mantine/form";
 import { useCounter, useListState } from "@mantine/hooks";
 import { useState } from "react";
 import { MCQ } from "../common/MCQ";
+import Link from "next/link";
 
 const qns = [
   {
@@ -60,7 +61,8 @@ export const Profile = (props: React.PropsWithChildren) => {
     <Stack align="center" p='lg'>
       <Text fw='bold' ta='center' size="xl">Thank you for completing the questionnaire!</Text>
       <Text size="lg" ta='center' c="dark">We will be using this information to tailor an engaging learning experience for you.</Text>
-      <Button>Redo</Button>
+      <Button component={Link} href="/user/courses/">Go to Courses</Button>
+      <Button variant='light'>Redo</Button>
     </Stack>
   </MCQ>
 }

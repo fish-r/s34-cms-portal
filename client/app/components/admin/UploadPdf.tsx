@@ -6,6 +6,7 @@ import { IconDownload, IconX, IconCloudUpload, IconCircleCheck } from "@tabler/i
 import { useRef, useState, useEffect } from "react";
 import classes from './UploadPdf.module.css';
 import { useInterval, useTimeout } from "@mantine/hooks";
+import Link from "next/link";
 
 export const UploadPdf = (props: React.PropsWithChildren) => {
     const theme = useMantineTheme();
@@ -75,7 +76,8 @@ export const UploadPdf = (props: React.PropsWithChildren) => {
                       color='green'
                       stroke={1.5}
               />
-            <Button onClick={() => setPhase(0)}>Upload new file?</Button>
+            <Button component={Link} href="/admin/storylineeditor">View Generated Storyline</Button>
+            <Button variant="light" onClick={() => setPhase(0)}>Upload new file?</Button>
           </Stack>
         }
        

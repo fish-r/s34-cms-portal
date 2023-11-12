@@ -23,6 +23,7 @@ export const Course = (props: any) => {
         <MCQ qns={summative_qns}>
           <Stack align="center" p='lg'>
             <Text fw='bold' size="xl">Congratulations on finishing the course!</Text>
+            <Text fw={200} c='dark.3' fz={48}>You scored: 3/4!</Text>
             <Button component={Link} href="/user/courses/">Return</Button>
           </Stack>
         </MCQ> :
