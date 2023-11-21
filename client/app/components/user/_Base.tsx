@@ -18,7 +18,7 @@ export const UserBase = (props: React.PropsWithChildren) => {
       <AppShell.Header>
         <Group h="100%" px="md">
             <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-            <Title>{NAME} Trainee</Title>
+            <Title>{NAME} User</Title>
         </Group>
       </AppShell.Header>
 

@@ -18,7 +18,7 @@ export const Base = (props: React.PropsWithChildren) => {
       <AppShell.Header>
         <Group h="100%" px="md">
             <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-            <Title>{NAME} Trainer</Title>
+            <Title>{NAME} Management</Title>
         </Group>
       </AppShell.Header>
 
