@@ -13,20 +13,24 @@ import { ContentService } from './content.service';
 import { Content } from './content.model';
 import { Response } from 'express';
 import { MongooseError } from 'mongoose';
+import { readFileSync } from 'fs';
+import { AwsService } from 'src/aws/aws.service';
 
 @Controller('/api/v1/content')
 export class ContentController {
-  constructor(private readonly contentService: ContentService) {}
+  constructor(
+    private readonly contentService: ContentService,
+    private readonly awsService: AwsService,
+  ) {}
 
   @Get()
-  getContentIndex() {
-    const contentIndex = this.contentService
-      .getContentIndex()
-      .then((result) => result)
-      .catch((err: MongooseError) => {
-        console.log(err);
-      });
-    return contentIndex;
+  async getContentIndex() {
+    try {
+      const contentIndex = await this.contentService.getContentIndex();
+      return contentIndex;
+    } catch (error) {
+      return error;
+    }
   }
 
   @Get('/:id')
@@ -41,6 +45,23 @@ export class ContentController {
       });
 
     return contentObject;
+  }
+
+  @Post('/test')
+  async testUpload() {
+    try {
+      const path = './testImage.png';
+      const fileBuffer = readFileSync(path);
+      const result = await this.awsService.uploadObject(
+        'testingfile',
+        fileBuffer,
+      );
+      console.log('post res', result);
+      return result;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
   }
 
   @Post()

@@ -23,13 +23,6 @@ export class ContentService {
   }
 
   /**
-   * Receives the content as a blob
-   * Pushes blob to S3
-   * Pushes blob to ML model for classification and question generation
-   */
-  pushToS3() {}
-
-  /**
    * Insert metadata into MongoDB
    * @param content Content metadata to be written to mongo
    */
