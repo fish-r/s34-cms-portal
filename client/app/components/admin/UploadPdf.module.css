@@ -1,0 +1,18 @@
+.wrapper {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.dropzone {
+    border: 1px gray dashed;
+    padding: 2rem;
+    padding-bottom: 3rem;
+    border-radius: 1rem;
+}
+
+.control {
+    position: absolute;
+    width: 16rem;
+    left: calc(50% - 8rem);
+    bottom: -1rem;
+}

@@ -1,4 +1,4 @@
-.container {
+/* .container {
   display: grid;
   grid-template-areas:
     'nav'
@@ -8,14 +8,14 @@
   grid-template-rows: auto auto 1fr 36px;
   align-items: center;
   min-height: 100vh;
-}
+} */
 
 .logo {
   height: 40vmin;
   pointer-events: none;
 }
 
-.header {
+/* .header {
   grid-area: header;
 }
 
@@ -74,4 +74,4 @@
   100% {
     transform: translateY(0px);
   }
-}
+} */
