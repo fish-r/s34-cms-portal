@@ -3,7 +3,7 @@ This repository contains the source code for the Content Management System under
 
 ## Pre-Requisites
 - [Nodejs](https://nodejs.org/en)
-- [npm Runtime Environment](https://www.npmjs.com/)
+- [npm](https://www.npmjs.com/)
 
 ## Project Structure
 The project structure is as shown below.
@@ -62,5 +62,5 @@ npm run dev
 4. Running backend
 Run the command below, and then head over to (http://localhost:3001)
 ```
-npm run start dev
+npm run start:dev
 ```
