@@ -6,14 +6,10 @@ import {
   Param,
   Patch,
   Post,
-  Res,
 } from '@nestjs/common';
 
 import { ContentService } from './content.service';
 import { Content } from './content.model';
-import { Response } from 'express';
-import { MongooseError } from 'mongoose';
-import { readFileSync } from 'fs';
 import { AwsService } from 'src/aws/aws.service';
 
 @Controller('/api/v1/content')
@@ -34,43 +30,9 @@ export class ContentController {
   }
 
   @Get('/:id')
-  getContentMetadata(@Param() param: { id: string }) {
-    const contentObject = this.contentService
-      .getContentMetaData(param.id)
-      .then((result) => {
-        return result;
-      })
-      .catch((err: MongooseError) => {
-        console.log(err);
-      });
-
-    return contentObject;
-  }
-
-  @Get('/test/download/:key')
-  async testDownload() {
-    // @Body() body: { key: string }, // @Param() param: { id: string },
+  async getContentMetadata(@Param() param: { id: string }) {
     try {
-      // const key = body.key;
-      const key = 'testingfile';
-      const result = await this.awsService.retrieveObject(key);
-      console.log(result);
-      // return result;
-    } catch (error) {
-      return error;
-    }
-  }
-
-  @Post('/test')
-  async testUpload() {
-    try {
-      const path = './testImage.png';
-      const fileBuffer = readFileSync(path);
-      const result = await this.awsService.uploadObject(
-        'testingfile',
-        fileBuffer,
-      );
-      console.log('post res', result);
+      const result = await this.contentService.getContentMetaData(param.id);
       return result;
     } catch (error) {
       console.log(error);
@@ -78,43 +40,82 @@ export class ContentController {
     }
   }
 
+  // Should backup to S3 and then insert into Mongo to prevent inconsistent records
   @Post()
-  uploadContentMetaData(@Body() body: Content, @Res() res: Response) {
-    this.contentService.insetContentMetadata(body).then((result) => {
-      console.log(result);
-      res.statusCode = 201;
-      res.json({
-        status: res.statusCode,
-        message: `Content inserted into DB with ID ${result._id}`,
-      });
-    });
+  createContentRecord(@Body() body: Content) {
+    try {
+      // Back up to S3
+      // this.awsService.uploadObject();
+
+      // Insert record into mongo
+      const result = this.contentService.insertContentMetadata(body);
+      return result;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
   }
 
   @Patch('/:id')
-  updateContentMetadata(@Param() param: { id: string }, @Body() body: Content) {
-    const contentObject = this.contentService
-      .updateContentMetadata(param.id, body)
-      .then((result) => {
-        return result;
-      })
-      .catch((err: MongooseError) => {
-        console.log(err);
-      });
-
-    return contentObject;
+  async updateContentMetadata(
+    @Param() param: { id: string },
+    @Body() body: Content,
+  ) {
+    try {
+      const result = await this.contentService.updateContentMetadata(
+        param.id,
+        body,
+      );
+      return result;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
   }
 
   @Delete('/:id')
-  deleteContentRecord(@Param() param: { id: string }) {
-    const contentObject = this.contentService
-      .delete(param.id)
-      .then((result) => {
-        return result;
-      })
-      .catch((err: MongooseError) => {
-        console.log(err);
-      });
+  async deleteContentRecord(@Param() param: { id: string }) {
+    try {
+      const result = await this.contentService.delete(param.id);
+      return result;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+}
 
-    return contentObject;
+@Controller('/api/test/content')
+export class TestContentController {
+  constructor(
+    private readonly contentService: ContentService,
+    private readonly awsService: AwsService,
+  ) {}
+
+  @Get('/download/:key')
+  async testDownload(@Param() param: { key: string }) {
+    try {
+      const key = param.key;
+      const result = await this.awsService.retrieveObject(key);
+      console.log(result.Body);
+      const bufToString = (await result.Body.transformToByteArray()).toString();
+      return bufToString;
+      // return result;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  @Post('/upload')
+  async testUpload(@Body() body: { media: string }) {
+    try {
+      const toBuffer = Buffer.from(body.media);
+      const result = await this.awsService.uploadObject('testfile', toBuffer);
+      console.log('post res', result);
+      return result;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
   }
 }

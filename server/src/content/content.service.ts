@@ -26,7 +26,7 @@ export class ContentService {
    * Insert metadata into MongoDB
    * @param content Content metadata to be written to mongo
    */
-  insetContentMetadata(content: Content) {
+  insertContentMetadata(content: Content) {
     const contentMetadata = new this.contentModel(content);
     const result = contentMetadata.save();
     return result;
