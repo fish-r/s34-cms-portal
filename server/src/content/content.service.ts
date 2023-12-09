@@ -18,7 +18,7 @@ export class ContentService {
    * Retrieves a single Content resource
    * @param id: String, MongoDB document id
    */
-  getContentById(id: string): any {
+  getContentMetaData(id: string): any {
     return this.contentModel.findById(id);
   }
 
@@ -26,7 +26,7 @@ export class ContentService {
    * Insert metadata into MongoDB
    * @param content Content metadata to be written to mongo
    */
-  insertToMongo(content: Content) {
+  insetContentMetadata(content: Content) {
     const contentMetadata = new this.contentModel(content);
     const result = contentMetadata.save();
     return result;

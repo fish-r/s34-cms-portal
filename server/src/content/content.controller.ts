@@ -34,9 +34,9 @@ export class ContentController {
   }
 
   @Get('/:id')
-  getContentById(@Param() param: { id: string }) {
+  getContentMetadata(@Param() param: { id: string }) {
     const contentObject = this.contentService
-      .getContentById(param.id)
+      .getContentMetaData(param.id)
       .then((result) => {
         return result;
       })
@@ -45,6 +45,20 @@ export class ContentController {
       });
 
     return contentObject;
+  }
+
+  @Get('/test/download/:key')
+  async testDownload() {
+    // @Body() body: { key: string }, // @Param() param: { id: string },
+    try {
+      // const key = body.key;
+      const key = 'testingfile';
+      const result = await this.awsService.retrieveObject(key);
+      console.log(result);
+      // return result;
+    } catch (error) {
+      return error;
+    }
   }
 
   @Post('/test')
@@ -65,30 +79,19 @@ export class ContentController {
   }
 
   @Post()
-  uploadContent(@Body() body: Content, @Res() res: Response) {
-    this.contentService
-      .insertToMongo(body)
-      .then((result) => {
-        console.log(result);
-        res.statusCode = 201;
-        res.json({
-          status: res.statusCode,
-          message: `Content inserted into DB with ID ${result._id}`,
-        });
-      })
-      .catch((err: MongooseError) => {
-        console.log(err);
-        res.statusCode = 422;
-        res.json({
-          status: res.statusCode,
-          message: 'Failed to write to DB',
-          error: err.message,
-        });
+  uploadContentMetaData(@Body() body: Content, @Res() res: Response) {
+    this.contentService.insetContentMetadata(body).then((result) => {
+      console.log(result);
+      res.statusCode = 201;
+      res.json({
+        status: res.statusCode,
+        message: `Content inserted into DB with ID ${result._id}`,
       });
+    });
   }
 
   @Patch('/:id')
-  update(@Param() param: { id: string }, @Body() body: Content) {
+  updateContentMetadata(@Param() param: { id: string }, @Body() body: Content) {
     const contentObject = this.contentService
       .updateContentMetadata(param.id, body)
       .then((result) => {
@@ -102,7 +105,7 @@ export class ContentController {
   }
 
   @Delete('/:id')
-  delete(@Param() param: { id: string }) {
+  deleteContentRecord(@Param() param: { id: string }) {
     const contentObject = this.contentService
       .delete(param.id)
       .then((result) => {

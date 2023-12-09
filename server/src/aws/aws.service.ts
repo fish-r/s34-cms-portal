@@ -1,4 +1,8 @@
-import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import {
+  GetObjectCommand,
+  PutObjectCommand,
+  S3Client,
+} from '@aws-sdk/client-s3';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
@@ -35,5 +39,12 @@ export class AwsService {
    * Pull object from Amazon S3 Storage
    * @param key: Name of file to be retrieved
    */
-  pullFromS3() {}
+  async retrieveObject(key: string) {
+    const command = new GetObjectCommand({
+      Bucket: process.env.S3_BUCKET_NAME,
+      Key: key,
+    });
+    const res = await this.s3Client.send(command);
+    return res;
+  }
 }
