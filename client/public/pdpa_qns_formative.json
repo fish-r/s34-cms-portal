@@ -1,0 +1,42 @@
+[
+  {
+    "question": "Think of a time when you had to share your details with a company. What act governs how they use your information? (Concrete Experience, Scenario-based question)",
+    "options": [
+      {"option": "Personal Data Protection Act", "value": "0"},
+      {"option": "Private Data Protection Agency", "value": "1"},
+      {"option": "Personal Data Provision Act", "value": "2"},
+      {"option": "Public Data Privacy Act", "value": "3"}
+    ],
+    "answer": "0"
+  },
+  {
+    "question": "After reviewing a recent data breach in the news, what steps do you think the company could have taken to better align with PDPA's requirements for protecting personal data? (Reflective Observation, Case studies and reflection prompts)",
+    "options": [
+      {"option": "Increased staff training", "value": "0"},
+      {"option": "Implemented stronger passwords", "value": "1"},
+      {"option": "Established a more secure data encryption policy", "value": "2"},
+      {"option": "All of the above", "value": "3"}
+    ],
+    "answer": "3"
+  },
+  {
+    "question": "Which principle does the PDPA embody to ensure a balance between personal data protection and organizational needs? (Abstract Conceptualization, Multiple-choice or true/false questions)",
+    "options": [
+      {"option": "Data minimization", "value": "0"},
+      {"option": "Data retention", "value": "1"},
+      {"option": "Openness", "value": "2"},
+      {"option": "Consent of the individual", "value": "3"}
+    ],
+    "answer": "0"
+  },
+  {
+    "question": "Your phone is bombarded with marketing calls. What does the DNC Registry protect you from? (Active Experimentation, Problem-solving tasks)",
+    "options": [
+      {"option": "All phone calls", "value": "0"},
+      {"option": "Telemarketing calls and messages", "value": "1"},
+      {"option": "Personal calls", "value": "2"},
+      {"option": "Emergency alerts", "value": "3"}
+    ],
+    "answer": "1"
+  }
+]

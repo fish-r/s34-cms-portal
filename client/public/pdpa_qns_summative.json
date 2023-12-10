@@ -1,0 +1,42 @@
+[
+  {
+    "question": "What does PDPA stand for?",
+    "options": [
+      {"option": "Personal Data Protection Act", "value": "0"},
+      {"option": "Private Data Protection Agency", "value": "1"},
+      {"option": "Personal Data Provision Act", "value": "2"},
+      {"option": "Public Data Privacy Act", "value": "3"}
+    ],
+    "answer": "0"
+  },
+  {
+    "question": "Which of the following is considered personal data under the PDPA?",
+    "options": [
+      {"option": "Business registration number", "value": "0"},
+      {"option": "An individual's full name", "value": "1"},
+      {"option": "Publicly available information", "value": "2"},
+      {"option": "An organization's email address", "value": "3"}
+    ],
+    "answer": "1"
+  },
+  {
+    "question": "When can personal data be collected without consent under the PDPA?",
+    "options": [
+      {"option": "For any marketing purposes", "value": "0"},
+      {"option": "When it is necessary for any legal investigation", "value": "1"},
+      {"option": "When it is for research purposes", "value": "2"},
+      {"option": "When the individual is famous", "value": "3"}
+    ],
+    "answer": "1"
+  },
+  {
+    "question": "What does the DNC Registry protect individuals from?",
+    "options": [
+      {"option": "All phone calls", "value": "0"},
+      {"option": "Telemarketing calls and messages", "value": "1"},
+      {"option": "Personal calls", "value": "2"},
+      {"option": "Emergency alerts", "value": "3"}
+    ],
+    "answer": "1"
+  }
+]
