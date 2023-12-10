@@ -24,6 +24,10 @@ export class ContentController {
     private readonly awsService: AwsService,
   ) {}
 
+  /**
+   *
+   * @returns Returns all content records in an object array
+   */
   @Get()
   async getContentIndex() {
     try {
@@ -34,6 +38,11 @@ export class ContentController {
     }
   }
 
+  /**
+   *
+   * @param param Takes in path parameter /:id which is the MongoDb ID of content record
+   * @returns The content record
+   */
   @Get('/:id')
   async getContentMetadata(@Param() param: { id: string }) {
     try {
@@ -45,7 +54,31 @@ export class ContentController {
     }
   }
 
-  // Should backup to S3 and then insert into Mongo to prevent inconsistent records
+  /**
+   *
+   * @param param Takes in path parameter /:key which is the key of the s3 object
+   * @returns Returns a string buffer of the object retrieved from s3
+   */
+  @Get('/download/:key')
+  async downloadContentMedia(@Param() param: { key: string }) {
+    try {
+      const download = await this.awsService.retrieveObject(param.key);
+      const bufToString = (
+        await download.Body.transformToByteArray()
+      ).toString();
+
+      return bufToString;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  /**
+   *
+   * @param body Multipart data with key name body. Should be a JSON or JSON string, {ownerId, title}
+   * @param file Multiepart file data of content to be uploaded
+   * @param response 201 if successfully pushed to s3 AND record created, failure response otherwise
+   */
   @Post()
   @UseInterceptors(FileInterceptor('file'))
   async createContentRecord(
@@ -81,6 +114,12 @@ export class ContentController {
     }
   }
 
+  /**
+   *
+   * @param param /:id MongoDb ID of content record to be updated
+   * @param body Content record properties to update
+   * @returns Status of update
+   */
   @Patch('/:id')
   async updateContentMetadata(
     @Param() param: { id: string },
@@ -98,6 +137,11 @@ export class ContentController {
     }
   }
 
+  /**
+   *
+   * @param param /:id MongoDb ID of content record to be deleted
+   * @returns Status of delete
+   */
   @Delete('/:id')
   async deleteContentRecord(@Param() param: { id: string }) {
     try {
@@ -110,6 +154,9 @@ export class ContentController {
   }
 }
 
+/**
+ * Controller for testing uploading to aws and downloading
+ */
 @Controller('/api/test/content')
 export class TestContentController {
   constructor(
