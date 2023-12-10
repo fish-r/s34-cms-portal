@@ -6,11 +6,16 @@ import {
   Param,
   Patch,
   Post,
+  Res,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 
 import { ContentService } from './content.service';
-import { Content } from './content.model';
+import { ContentRequestBody } from './content.model';
 import { AwsService } from 'src/aws/aws.service';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { Response } from 'express';
 
 @Controller('/api/v1/content')
 export class ContentController {
@@ -42,24 +47,44 @@ export class ContentController {
 
   // Should backup to S3 and then insert into Mongo to prevent inconsistent records
   @Post()
-  createContentRecord(@Body() body: Content) {
+  @UseInterceptors(FileInterceptor('file'))
+  async createContentRecord(
+    @Body() body: string,
+    @UploadedFile() file: Express.Multer.File,
+    @Res() response: Response,
+  ) {
     try {
       // Back up to S3
-      // this.awsService.uploadObject();
+      const uploadResult = await this.awsService.uploadObject(
+        file.originalname,
+        file.buffer,
+      );
+      // console.log('S3 response', uploadResult);
+      // Insert record into mongo only when upload is complete
+      if (uploadResult.$metadata.httpStatusCode === 200) {
+        const stringify = JSON.stringify(body);
+        const bodyToJson = JSON.parse(stringify);
+        const obj = JSON.parse(bodyToJson.body);
+        const result = await this.contentService.insertContentMetadata(obj);
+        response.statusCode = 201;
+        response.send(result);
+      } else {
+        response.statusCode = uploadResult.$metadata.httpStatusCode;
+        response.send({ message: 'Failed to upload to S3' });
+      }
 
-      // Insert record into mongo
-      const result = this.contentService.insertContentMetadata(body);
-      return result;
+      //TODO: trigger processing here
     } catch (error) {
-      console.log(error);
-      return error;
+      console.log('errorr message', error.message);
+      response.statusCode = 500;
+      response.send({ message: error.message });
     }
   }
 
   @Patch('/:id')
   async updateContentMetadata(
     @Param() param: { id: string },
-    @Body() body: Content,
+    @Body() body: ContentRequestBody,
   ) {
     try {
       const result = await this.contentService.updateContentMetadata(
@@ -107,10 +132,15 @@ export class TestContentController {
   }
 
   @Post('/upload')
-  async testUpload(@Body() body: { media: string }) {
+  @UseInterceptors(FileInterceptor('file'))
+  async testUpload(@UploadedFile() file: Express.Multer.File) {
     try {
-      const toBuffer = Buffer.from(body.media);
-      const result = await this.awsService.uploadObject('testfile', toBuffer);
+      console.log(file);
+      // const toBuffer = Buffer.from(body.media);
+      const result = await this.awsService.uploadObject(
+        file.originalname,
+        file.buffer,
+      );
       console.log('post res', result);
       return result;
     } catch (error) {
