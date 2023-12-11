@@ -88,6 +88,7 @@ export class ContentController {
   ) {
     try {
       // Back up to S3
+      //TODO: change aws key to title since title is unique
       const uploadResult = await this.awsService.uploadObject(
         file.originalname,
         file.buffer,
