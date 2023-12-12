@@ -1,5 +1,6 @@
 import { Group, Button, Text, Anchor, Checkbox, Container, Paper, PasswordInput, TextInput, Title } from "@mantine/core";
 import { NAME } from "./variables";
+import Link from "next/link";
 
 export default function IndexPage() {
     return (
@@ -24,7 +25,7 @@ export default function IndexPage() {
                     Forgot password?
                 </Anchor>
                 </Group>
-                <Button fullWidth mt="xl">
+                <Button fullWidth mt="xl" component={Link} href={"/user"} >
                 Sign in
                 </Button>
             </Paper>

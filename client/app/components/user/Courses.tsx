@@ -5,9 +5,10 @@ import Link from "next/link";
 import { useState } from "react";
 
 const data = [
-  { id:'1', name: "PDPA", instructor: "Ember Lumen", start: "1/1/2023", end: "1/1/2024", state:"start" },
-  { id:'2', name: "EHS Risk Assessment", instructor: "Meilin Lee", start: "1/1/2023", end: "1/1/2024", state:"continue" },
-  { id:'3', name: "Respect and Consent", instructor: "Buzz Lightyear", start: "1/1/2023", end: "1/1/2024", state:"start" },
+  { id:'1', type:"mcq", name: "PDPA", instructor: "Ember Lumen", start: "1/1/2023", end: "1/1/2024", state:"start" },
+  { id:'2', type:"mcq", name: "EHS Risk Assessment", instructor: "Meilin Lee", start: "1/1/2023", end: "1/1/2024", state:"continue" },
+  { id:'3', type:"mcq", name: "Respect and Consent", instructor: "Eve", start: "1/1/2023", end: "1/1/2024", state:"start" },
+  { id:'4', type:"chat", name: "The Inner Solar System", instructor: "Buzz Lightyear", start: "1/1/2023", end: "1/1/2024", state:"start" },
 ]
 
 export const Courses = (props: React.PropsWithChildren) => {
