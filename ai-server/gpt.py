@@ -124,3 +124,6 @@ def run_model():
 
     p_response = query_engine.query(p_query)
     display(Markdown(f"<b>{p_response}</b>"))
+    
+    all_questions = response + r_response + t_response + p_response
+    return all_questions
