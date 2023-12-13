@@ -49,21 +49,23 @@ def process_file(key: str):
         s3.download_file(bucket_name, key, f'./testdata/{key}')
         # response = generate_questions()
         # print(response)
-        send_processing_complete()
+        dummy = {"question1": "test"}
+        send_processing_complete(dummy)
     except Exception as e:
         send_processing_failed(e)
     
         
-def  send_processing_complete():
+def  send_processing_complete(questions:dict):
     """ Sends a webhook request to CMS Server to notify completion of processing """
     url = "http://localhost:3001/api/v1/content/webhook"
     data = {
         "task": "process", 
         "status":"complete",
-        "completed_at": datetime.datetime.now()
+        "completed_at": datetime.datetime.now(),
+        "questions": questions
     }
     response = requests.post(url, data=data)
-    print(response.json)
+    print(response.json())
     
 def send_processing_failed(error: str):
     """ Sends a webhook request to CMS Server to notify of a webhook failure """
