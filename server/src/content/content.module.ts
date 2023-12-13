@@ -1,6 +1,10 @@
 // content.module.ts
 import { Module } from '@nestjs/common';
-import { ContentController, TestContentController } from './content.controller';
+import {
+  ContentController,
+  ContentWebHookController,
+  TestContentController,
+} from './content.controller';
 import { ContentService } from './content.service';
 import { AwsModule } from 'src/aws/aws.module';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -12,7 +16,11 @@ import { AwsService } from 'src/aws/aws.service';
     AwsModule,
     MongooseModule.forFeature([{ name: 'Content', schema: ContentSchema }]),
   ],
-  controllers: [ContentController, TestContentController],
+  controllers: [
+    ContentController,
+    TestContentController,
+    ContentWebHookController,
+  ],
   providers: [ContentService, AwsService],
 })
 export class ContentModule {}

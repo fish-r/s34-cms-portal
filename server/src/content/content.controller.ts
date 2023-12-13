@@ -155,6 +155,19 @@ export class ContentController {
   }
 }
 
+@Controller('/api/v1/content/webhook')
+export class ContentWebHookController {
+  constructor(private readonly contentService: ContentService) {}
+
+  @Post('/')
+  async processWebhook(@Body() body) {
+    console.log(body);
+    //TODO: write questions to database
+    //TODO: notify client of completion
+    return { message: 'webhook received' };
+  }
+}
+
 /**
  * Controller for testing uploading to aws and downloading
  */
