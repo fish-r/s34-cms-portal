@@ -1,0 +1,2 @@
+088044628795.dkr.ecr.ap-southeast-1.amazonaws.com/s34-client
+088044628795.dkr.ecr.ap-southeast-1.amazonaws.com/s34-server
