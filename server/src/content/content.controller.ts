@@ -88,6 +88,7 @@ export class ContentController {
   ) {
     try {
       // Back up to S3
+      //TODO: change aws key to title since title is unique
       const uploadResult = await this.awsService.uploadObject(
         file.originalname,
         file.buffer,
@@ -151,6 +152,19 @@ export class ContentController {
       console.log(error);
       return error;
     }
+  }
+}
+
+@Controller('/api/v1/content/webhook')
+export class ContentWebHookController {
+  constructor(private readonly contentService: ContentService) {}
+
+  @Post('/')
+  async processWebhook(@Body() body) {
+    console.log(body);
+    //TODO: write questions to database
+    //TODO: notify client of completion
+    return { message: 'webhook received' };
   }
 }
 

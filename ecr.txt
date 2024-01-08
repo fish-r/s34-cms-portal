@@ -1,2 +1,4 @@
 088044628795.dkr.ecr.ap-southeast-1.amazonaws.com/s34-client
 088044628795.dkr.ecr.ap-southeast-1.amazonaws.com/s34-server
+
+aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 088044628795.dkr.ecr.ap-southeast-1.amazonaws.com
